@@ -9,6 +9,6 @@ class GameStrategy(ABC):
         pass
 
     @abstractmethod
-    def get_strategy_name(self) -> str:
+    def prioritize_targets(self, available_targets: list) -> list:
         pass
     
