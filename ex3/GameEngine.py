@@ -17,9 +17,11 @@ class GameEngine:
         hand = deck_data["deck"] 
         battlefield = ["Enemy Player"]
         result = self.strategy.execute_turn(hand,  battlefield)
+        result["hand"] = [f"{card.name} ({card.cost})" for card in hand]
         self.turns += 1
         self.total_damage += result["damage_dealt"]
         self.cards_created += len(hand)
+        
         return result
     
     def get_engine_status(self) -> dict:
@@ -28,4 +30,5 @@ class GameEngine:
         		"strategy_used": self.strategy.get_strategy_name(),
         		"total_damage": self.total_damage,
         		"cards_created": self.cards_created
-    				}
+			}
+            

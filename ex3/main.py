@@ -3,7 +3,7 @@ from .AggressiveStrategy import AggressiveStrategy
 from .GameEngine import GameEngine
 
 
-print("=== DataDeck Game Engine ===")
+print("=== DataDeck Game Engine ===\n")
 print("Configuring Fantasy Card Game...")
 
 # create engine + components
@@ -25,10 +25,10 @@ print("\nSimulating aggressive turn...")
 deck_data = factory.create_themed_deck(3)
 hand = deck_data["deck"]
 # display hand like expected output
-print("hand:" ,[f"{card.name} {card.cost}"for card in hand] )
-# simulate turn
-result = strategy.execute_turn(hand, ["Enemy Player"])
-# print result
+result = engine.simulate_turn()
+print(result["hand"])
+# # print result
+print("Turn execution:")
 print("Turn execution:")
 print("Strategy:", result["strategy"])
 print("Actions:", {
@@ -37,11 +37,6 @@ print("Actions:", {
     "targets_attacked": result["targets_attacked"],
     "damage_dealt": result["damage_dealt"]
 })
-
-# update engine manually (since we didn’t call simulate_turn here)
-engine.turns += 1
-engine.total_damage += result["damage_dealt"]
-engine.cards_created += len(hand)
 
 # final report
 print("\nGame Report:")
